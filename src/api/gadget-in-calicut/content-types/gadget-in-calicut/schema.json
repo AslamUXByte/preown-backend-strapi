@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gadget_in_calicuts",
+  "info": {
+    "singularName": "gadget-in-calicut",
+    "pluralName": "gadget-in-calicuts",
+    "displayName": "Gadget-in-calicut"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

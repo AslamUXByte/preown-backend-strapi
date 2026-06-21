@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "product_reviews",
+  "info": {
+    "singularName": "product-review",
+    "pluralName": "product-reviews",
+    "displayName": "Product Review"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "new_product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::new-product.new-product",
+      "inversedBy": "product_reviews"
+    },
+    "StarCount": {
+      "type": "integer"
+    },
+    "Review": {
+      "type": "text"
+    }
+  }
+}

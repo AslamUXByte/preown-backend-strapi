@@ -1,0 +1,87 @@
+{
+  "kind": "collectionType",
+  "collectionName": "seos",
+  "info": {
+    "singularName": "seo",
+    "pluralName": "seos",
+    "displayName": "SEO",
+    "description": "SEO metadata for pages and posts"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "keywords": {
+      "type": "string"
+    },
+    "ogTitle": {
+      "type": "string"
+    },
+    "ogDescription": {
+      "type": "text"
+    },
+    "ogType": {
+      "type": "enumeration",
+      "default": "website",
+      "enum": [
+        "website",
+        "article",
+        "profile",
+        "video",
+        "music"
+      ]
+    },
+    "ogUrl": {
+      "type": "string"
+    },
+    "ogImages": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "canonicalUrl": {
+      "type": "string"
+    },
+    "twitterTitle": {
+      "type": "string"
+    },
+    "twitterDescription": {
+      "type": "text"
+    },
+    "twitterImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "structuredData": {
+      "type": "json"
+    },
+    "robotsMeta": {
+      "type": "string"
+    },
+    "focusKeyword": {
+      "type": "string"
+    },
+    "blog": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::blog.blog",
+      "mappedBy": "seo"
+    },
+    "slug": {
+      "type": "uid"
+    }
+  }
+}

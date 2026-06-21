@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "site_user_carts",
+  "info": {
+    "singularName": "site-user-cart",
+    "pluralName": "site-user-carts",
+    "displayName": "Site User Cart"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "site_user_carts"
+    },
+    "new_product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::new-product.new-product",
+      "inversedBy": "site_user_carts"
+    },
+    "quantity": {
+      "type": "integer"
+    }
+  }
+}

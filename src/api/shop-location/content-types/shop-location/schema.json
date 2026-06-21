@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shop_locations",
+  "info": {
+    "singularName": "shop-location",
+    "pluralName": "shop-locations",
+    "displayName": "Shop Location"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "location": {
+      "type": "string"
+    }
+  }
+}

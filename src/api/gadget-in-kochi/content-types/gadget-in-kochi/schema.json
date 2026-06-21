@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gadget_in_kochis",
+  "info": {
+    "singularName": "gadget-in-kochi",
+    "pluralName": "gadget-in-kochis",
+    "displayName": "Gadget-in-kochi"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "testamonials",
+  "info": {
+    "singularName": "testamonial",
+    "pluralName": "testamonials",
+    "displayName": "Testamonial"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "integer"
+    },
+    "message": {
+      "type": "text"
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

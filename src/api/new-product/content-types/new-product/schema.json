@@ -1,0 +1,168 @@
+{
+  "kind": "collectionType",
+  "collectionName": "new_products",
+  "info": {
+    "singularName": "new-product",
+    "pluralName": "new-products",
+    "displayName": "New Product"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ProductName": {
+      "type": "string"
+    },
+    "SerialNumber": {
+      "type": "string"
+    },
+    "ProductCategory": {
+      "type": "enumeration",
+      "enum": [
+        "Smart Phone",
+        "Tablet",
+        "Laptop",
+        "Smart Watch",
+        "TWS"
+      ]
+    },
+    "Brand": {
+      "type": "enumeration",
+      "enum": [
+        "Apple",
+        "Samsung",
+        "Vivo"
+      ]
+    },
+    "Condition": {
+      "type": "enumeration",
+      "enum": [
+        "Brand New",
+        "Just Active",
+        "Preowned"
+      ]
+    },
+    "ScreenSizewithRefreshRate": {
+      "type": "string"
+    },
+    "RAM": {
+      "type": "integer"
+    },
+    "Storage": {
+      "type": "integer"
+    },
+    "Processor": {
+      "type": "string"
+    },
+    "OS": {
+      "type": "string"
+    },
+    "NetworkSupport": {
+      "type": "enumeration",
+      "enum": [
+        "Support 5G",
+        "Support 4G only"
+      ]
+    },
+    "Sim1": {
+      "type": "enumeration",
+      "enum": [
+        "eSIM",
+        "Physical SIM"
+      ]
+    },
+    "Sim2": {
+      "type": "enumeration",
+      "enum": [
+        "eSIM",
+        "Physical SIM"
+      ]
+    },
+    "MemmoryCardSupport": {
+      "type": "boolean"
+    },
+    "USB": {
+      "type": "enumeration",
+      "enum": [
+        "Type C",
+        "Lightning Port"
+      ]
+    },
+    "WiredChargingSpeed": {
+      "type": "integer"
+    },
+    "WirelessChargingSpeed": {
+      "type": "integer"
+    },
+    "AdapterAvailability": {
+      "type": "boolean"
+    },
+    "ChargingCableAvailability": {
+      "type": "boolean"
+    },
+    "ProductWarrentyEndDate": {
+      "type": "date"
+    },
+    "ShopWarrentyInDays": {
+      "type": "integer"
+    },
+    "MRP": {
+      "type": "biginteger"
+    },
+    "ProductPriceWIthoutGST": {
+      "type": "biginteger"
+    },
+    "GSTPercentage": {
+      "type": "integer"
+    },
+    "GSTAmount": {
+      "type": "decimal"
+    },
+    "TotalPriceWithGST": {
+      "type": "biginteger"
+    },
+    "Color": {
+      "type": "string"
+    },
+    "shop_location": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::shop-location.shop-location"
+    },
+    "product_reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-review.product-review",
+      "mappedBy": "new_product"
+    },
+    "ProductCondition": {
+      "type": "enumeration",
+      "enum": [
+        "Superb",
+        "Good",
+        "Fair"
+      ]
+    },
+    "ProductYear": {
+      "type": "integer"
+    },
+    "ProductImagesAndVideos": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "SoldOutStatus": {
+      "type": "boolean"
+    },
+    "site_user_carts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::site-user-cart.site-user-cart",
+      "mappedBy": "new_product"
+    }
+  }
+}
