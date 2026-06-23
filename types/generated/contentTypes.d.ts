@@ -853,6 +853,45 @@ export interface ApiTestamonialTestamonial extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiUserAddressUserAddress extends Struct.CollectionTypeSchema {
+  collectionName: 'user_addresses';
+  info: {
+    displayName: 'User Address';
+    pluralName: 'user-addresses';
+    singularName: 'user-address';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    AddressLine1: Schema.Attribute.Text & Schema.Attribute.Required;
+    AddressLine2: Schema.Attribute.Text;
+    City: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    District: Schema.Attribute.String & Schema.Attribute.Required;
+    LandMark: Schema.Attribute.Text & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-address.user-address'
+    > &
+      Schema.Attribute.Private;
+    PhoneNumber: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+    PinCode: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    State: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1346,6 +1385,10 @@ export interface PluginUsersPermissionsUser
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user_addresses: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-address.user-address'
+    >;
     username: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
@@ -1377,6 +1420,7 @@ declare module '@strapi/strapi' {
       'api::shop-location.shop-location': ApiShopLocationShopLocation;
       'api::site-user-cart.site-user-cart': ApiSiteUserCartSiteUserCart;
       'api::testamonial.testamonial': ApiTestamonialTestamonial;
+      'api::user-address.user-address': ApiUserAddressUserAddress;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

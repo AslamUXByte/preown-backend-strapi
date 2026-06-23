@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_addresses",
+  "info": {
+    "singularName": "user-address",
+    "pluralName": "user-addresses",
+    "displayName": "User Address"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "PhoneNumber": {
+      "type": "biginteger",
+      "required": true
+    },
+    "AddressLine1": {
+      "type": "text",
+      "required": true
+    },
+    "AddressLine2": {
+      "type": "text"
+    },
+    "LandMark": {
+      "type": "text",
+      "required": true
+    },
+    "City": {
+      "type": "string",
+      "required": true
+    },
+    "District": {
+      "type": "string",
+      "required": true
+    },
+    "State": {
+      "type": "string",
+      "required": true
+    },
+    "PinCode": {
+      "type": "biginteger",
+      "required": true
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "user_addresses"
+    }
+  }
+}
