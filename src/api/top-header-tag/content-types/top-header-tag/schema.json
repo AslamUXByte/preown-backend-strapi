@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "top_header_tags",
+  "info": {
+    "singularName": "top-header-tag",
+    "pluralName": "top-header-tags",
+    "displayName": "TopHeader Tag"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "TagName": {
+      "type": "string"
+    },
+    "RedirectionLink": {
+      "type": "string"
+    }
+  }
+}

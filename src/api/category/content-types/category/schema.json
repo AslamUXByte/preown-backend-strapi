@@ -23,6 +23,12 @@
         "videos",
         "audios"
       ]
+    },
+    "new_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::new-product.new-product",
+      "mappedBy": "category"
     }
   }
 }

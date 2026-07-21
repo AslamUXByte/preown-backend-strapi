@@ -488,6 +488,10 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
+    new_products: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::new-product.new-product'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -557,6 +561,37 @@ export interface ApiGadgetInKochiGadgetInKochi
   };
 }
 
+export interface ApiHeroBannerHeroBanner extends Struct.CollectionTypeSchema {
+  collectionName: 'hero_banners';
+  info: {
+    displayName: 'HeroBanner';
+    pluralName: 'hero-banners';
+    singularName: 'hero-banner';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    BannerName: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Image: Schema.Attribute.Media<'images' | 'files' | 'videos'> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hero-banner.hero-banner'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    RedirectionLink: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiNewProductNewProduct extends Struct.CollectionTypeSchema {
   collectionName: 'new_products';
   info: {
@@ -570,6 +605,7 @@ export interface ApiNewProductNewProduct extends Struct.CollectionTypeSchema {
   attributes: {
     AdapterAvailability: Schema.Attribute.Boolean;
     Brand: Schema.Attribute.Enumeration<['Apple', 'Samsung', 'Vivo']>;
+    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     ChargingCableAvailability: Schema.Attribute.Boolean;
     Color: Schema.Attribute.String;
     Condition: Schema.Attribute.Enumeration<
@@ -578,8 +614,9 @@ export interface ApiNewProductNewProduct extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Featured: Schema.Attribute.Boolean;
     GSTAmount: Schema.Attribute.Decimal;
-    GSTPercentage: Schema.Attribute.Integer;
+    GSTPercentage: Schema.Attribute.Decimal;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -587,7 +624,7 @@ export interface ApiNewProductNewProduct extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     MemmoryCardSupport: Schema.Attribute.Boolean;
-    MRP: Schema.Attribute.BigInteger;
+    MRP: Schema.Attribute.Integer;
     NetworkSupport: Schema.Attribute.Enumeration<
       ['Support 5G', 'Support 4G only']
     >;
@@ -603,7 +640,7 @@ export interface ApiNewProductNewProduct extends Struct.CollectionTypeSchema {
     ProductCondition: Schema.Attribute.Enumeration<['Superb', 'Good', 'Fair']>;
     ProductImagesAndVideos: Schema.Attribute.Media<'images' | 'videos', true>;
     ProductName: Schema.Attribute.String;
-    ProductPriceWIthoutGST: Schema.Attribute.BigInteger;
+    ProductPriceWIthoutGST: Schema.Attribute.Integer;
     ProductWarrentyEndDate: Schema.Attribute.Date;
     ProductYear: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
@@ -623,7 +660,7 @@ export interface ApiNewProductNewProduct extends Struct.CollectionTypeSchema {
     >;
     SoldOutStatus: Schema.Attribute.Boolean;
     Storage: Schema.Attribute.Integer;
-    TotalPriceWithGST: Schema.Attribute.BigInteger;
+    TotalPriceWithGST: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -847,6 +884,36 @@ export interface ApiTestamonialTestamonial extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     rating: Schema.Attribute.Integer;
     role: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTopHeaderTagTopHeaderTag
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'top_header_tags';
+  info: {
+    displayName: 'TopHeader Tag';
+    pluralName: 'top-header-tags';
+    singularName: 'top-header-tag';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::top-header-tag.top-header-tag'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    RedirectionLink: Schema.Attribute.String;
+    TagName: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1413,6 +1480,7 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::gadget-in-calicut.gadget-in-calicut': ApiGadgetInCalicutGadgetInCalicut;
       'api::gadget-in-kochi.gadget-in-kochi': ApiGadgetInKochiGadgetInKochi;
+      'api::hero-banner.hero-banner': ApiHeroBannerHeroBanner;
       'api::new-product.new-product': ApiNewProductNewProduct;
       'api::product-review.product-review': ApiProductReviewProductReview;
       'api::product.product': ApiProductProduct;
@@ -1420,6 +1488,7 @@ declare module '@strapi/strapi' {
       'api::shop-location.shop-location': ApiShopLocationShopLocation;
       'api::site-user-cart.site-user-cart': ApiSiteUserCartSiteUserCart;
       'api::testamonial.testamonial': ApiTestamonialTestamonial;
+      'api::top-header-tag.top-header-tag': ApiTopHeaderTagTopHeaderTag;
       'api::user-address.user-address': ApiUserAddressUserAddress;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

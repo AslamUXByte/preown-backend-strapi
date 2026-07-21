@@ -108,19 +108,19 @@
       "type": "integer"
     },
     "MRP": {
-      "type": "biginteger"
+      "type": "integer"
     },
     "ProductPriceWIthoutGST": {
-      "type": "biginteger"
+      "type": "integer"
     },
     "GSTPercentage": {
-      "type": "integer"
+      "type": "decimal"
     },
     "GSTAmount": {
       "type": "decimal"
     },
     "TotalPriceWithGST": {
-      "type": "biginteger"
+      "type": "integer"
     },
     "Color": {
       "type": "string"
@@ -163,6 +163,15 @@
       "relation": "oneToMany",
       "target": "api::site-user-cart.site-user-cart",
       "mappedBy": "new_product"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "new_products"
+    },
+    "Featured": {
+      "type": "boolean"
     }
   }
 }
