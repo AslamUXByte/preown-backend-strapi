@@ -628,6 +628,7 @@ export interface ApiNewProductNewProduct extends Struct.CollectionTypeSchema {
     NetworkSupport: Schema.Attribute.Enumeration<
       ['Support 5G', 'Support 4G only']
     >;
+    order: Schema.Attribute.Relation<'manyToOne', 'api::order.order'>;
     OS: Schema.Attribute.String;
     Processor: Schema.Attribute.String;
     product_reviews: Schema.Attribute.Relation<
@@ -667,6 +668,49 @@ export interface ApiNewProductNewProduct extends Struct.CollectionTypeSchema {
     USB: Schema.Attribute.Enumeration<['Type C', 'Lightning Port']>;
     WiredChargingSpeed: Schema.Attribute.Integer;
     WirelessChargingSpeed: Schema.Attribute.Integer;
+  };
+}
+
+export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
+  collectionName: 'orders';
+  info: {
+    displayName: 'Order';
+    pluralName: 'orders';
+    singularName: 'order';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::order.order'> &
+      Schema.Attribute.Private;
+    new_products: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::new-product.new-product'
+    >;
+    OrderStatus: Schema.Attribute.Enumeration<
+      ['Ordered', 'Packed', 'Shipped', 'Delivered', 'Cancelled']
+    >;
+    PaymentStatus: Schema.Attribute.Enumeration<['PENDING', 'PAID', 'FAILED']>;
+    publishedAt: Schema.Attribute.DateTime;
+    RazorpayOrderId: Schema.Attribute.String;
+    RazorpayPaymentId: Schema.Attribute.String;
+    TotalAmount: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_address: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::user-address.user-address'
+    >;
+    users_permissions_users: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -945,6 +989,7 @@ export interface ApiUserAddressUserAddress extends Struct.CollectionTypeSchema {
       'api::user-address.user-address'
     > &
       Schema.Attribute.Private;
+    orders: Schema.Attribute.Relation<'oneToMany', 'api::order.order'>;
     PhoneNumber: Schema.Attribute.BigInteger & Schema.Attribute.Required;
     PinCode: Schema.Attribute.BigInteger & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
@@ -1433,6 +1478,7 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    order: Schema.Attribute.Relation<'manyToOne', 'api::order.order'>;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
@@ -1482,6 +1528,7 @@ declare module '@strapi/strapi' {
       'api::gadget-in-kochi.gadget-in-kochi': ApiGadgetInKochiGadgetInKochi;
       'api::hero-banner.hero-banner': ApiHeroBannerHeroBanner;
       'api::new-product.new-product': ApiNewProductNewProduct;
+      'api::order.order': ApiOrderOrder;
       'api::product-review.product-review': ApiProductReviewProductReview;
       'api::product.product': ApiProductProduct;
       'api::seo.seo': ApiSeoSeo;

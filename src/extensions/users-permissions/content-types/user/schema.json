@@ -77,6 +77,12 @@
       "relation": "oneToMany",
       "target": "api::user-address.user-address",
       "mappedBy": "users_permissions_user"
+    },
+    "order": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::order.order",
+      "inversedBy": "users_permissions_users"
     }
   }
 }

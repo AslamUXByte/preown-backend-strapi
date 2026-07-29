@@ -2,16 +2,16 @@ module.exports = {
   routes: [
     {
       method: 'POST',
-      path: '/site-user-carts/add',
-      handler: 'site-user-cart.addToCart',
+      path: '/addresses',
+      handler: 'user-address.createAddress',
       config: {
         auth: {},
       },
     },
     {
       method: 'GET',
-      path: '/site-user-carts/mycart',
-      handler: 'site-user-cart.myCart',
+      path: '/addresses/my',
+      handler: 'user-address.myAddresses',
       config: {
         auth: {},
       },

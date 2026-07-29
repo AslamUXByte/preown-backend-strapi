@@ -172,6 +172,12 @@
     },
     "Featured": {
       "type": "boolean"
+    },
+    "order": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::order.order",
+      "inversedBy": "new_products"
     }
   }
 }
